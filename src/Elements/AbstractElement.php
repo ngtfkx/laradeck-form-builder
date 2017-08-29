@@ -4,30 +4,46 @@ namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
 use Illuminate\Support\Collection;
-use Ngtfkx\Laradeck\FormBuilder\Traits;
 
 abstract class AbstractElement
 {
-    use Traits\Common;
+    /**
+     * @var string $id Значение атрибута ID элемента
+     */
+    protected $id;
 
     /**
-     * Значение элемента
-     *
-     * @var string
+     * @var string $name Значение атрибута name элемента
+     */
+    protected $name;
+
+    /**
+     * @var Collection|iterable $classes Коллекция классом элемента
+     */
+    protected $classes;
+
+    /**
+     * @var Collection|iterable $attributes Коллекция дополнительных атрибутов элемента
+     */
+    protected $attributes;
+
+    /**
+     * @var Collection|iterable $styles Коллекция inline-стилей элемента
+     */
+    protected $styles;
+
+    /**
+     * @var string $value Значение элемента
      */
     protected $value;
 
     /**
-     * Тег элемента
-     *
-     * @var string
+     * @var string $tag Тег элемента
      */
     protected $tag;
 
     /**
-     * Набор атрибутов для генерации html-кода элементов
-     *
-     * @var Collection
+     * @var Collection|iterable $parts Набор атрибутов для генерации html-кода элементов
      */
     protected $parts;
 
@@ -58,6 +74,173 @@ abstract class AbstractElement
     public function value($value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Сеттер атрибута id элемента
+     *
+     * @param string $value
+     * @return AbstractElement
+     */
+    public function id(string $value): self
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    /**
+     * Сеттер атрибута name элемента
+     *
+     * @param string $value
+     * @return AbstractElement
+     */
+    public function name(string $value): self
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    /**
+     * Добавить элементу один или несколько классов
+     *
+     * @param array ...$classes
+     * @return AbstractElement
+     */
+    public function class(...$classes): self
+    {
+        $this->classes($classes);
+
+        return $this;
+    }
+
+    /**
+     *  Добавить элементу один или несколько классов из массива
+     *
+     * @param iterable $classes
+     * @return AbstractElement
+     */
+    public function classes(iterable $classes): self
+    {
+        foreach ($classes as $class) {
+            if (!$this->classes->contains($class)) {
+                $this->classes->push($class);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Добавить к элементу один или несколько inline-стилей
+     *
+     * @param string $key
+     * @param string|null $value
+     * @return AbstractElement
+     */
+    public function style(string $key, string $value = null): self
+    {
+        if (empty($value)) {
+            $pos = strpos($key, ':', 2);
+            if ($pos !== false) {
+                $parts = explode(':', strrev($key));
+                $key = strrev($parts[1]);
+                $value = strrev($parts[0]);
+            }
+        }
+
+        if ($key && $value) {
+            $this->styles->put($key, $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Добавить к элементу один или несколько inline-стилей из массива
+     *
+     * @param iterable $styles
+     * @return AbstractElement
+     */
+    public function styles(iterable $styles): self
+    {
+        foreach ($styles as $key => $value) {
+            $this->styles->put($key, $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Добавить аттрибут к элементу
+     *
+     * @param string $key
+     * @param string|null $value
+     * @return AbstractElement
+     */
+    public function attr(string $key, string $value = null): self
+    {
+        $this->attributes->put($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * Добавить один или несколько атрибутов из массива к элементу
+     *
+     * @param iterable $attributes
+     * @return AbstractElement
+     */
+    public function attrs(iterable $attributes): self
+    {
+        foreach ($attributes as $key => $value) {
+            if ($key === 'class') {
+                $this->class($value);
+            } else if ($key === 'style') {
+                $this->style($value);
+            } else {
+                $this->attributes->put($key, $value);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Очистить классы элемента
+     *
+     * @return AbstractElement
+     */
+    public function clearClasses(): self
+    {
+        $this->classes = new Collection();
+
+        return $this;
+    }
+
+    /**
+     * Очистить классы стили
+     *
+     * @return AbstractElement
+     */
+    public function clearStyles(): self
+    {
+        $this->styles = new Collection();
+
+        return $this;
+    }
+
+    /**
+     * Очистить классы атрибуты
+     *
+     * @return AbstractElement
+     */
+    public function clearAttributes(): self
+    {
+        $this->attributes = new Collection();
 
         return $this;
     }
