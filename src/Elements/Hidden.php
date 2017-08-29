@@ -16,7 +16,7 @@ class Hidden extends AbstractElement
 
     public function tag(): void
     {
-        $this->tag = 'hidden';
+        $this->tag = 'input type="hidden"';
     }
 
 }

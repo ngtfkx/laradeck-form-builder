@@ -76,6 +76,54 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа email
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Email
+     */
+    public function email(string $name = null, string $value = null): Elements\Email
+    {
+        return new Elements\Email($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа password
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Password
+     */
+    public function password(string $name = null, string $value = null): Elements\Password
+    {
+        return new Elements\Password($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа number
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Number
+     */
+    public function number(string $name = null, string $value = null): Elements\Number
+    {
+        return new Elements\Number($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа tel
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Tel
+     */
+    public function tel(string $name = null, string $value = null): Elements\Tel
+    {
+        return new Elements\Tel($name, $value);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string

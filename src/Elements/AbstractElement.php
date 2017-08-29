@@ -48,6 +48,11 @@ abstract class AbstractElement
     protected $parts;
 
     /**
+     * @var bool $needClose Признак, что надо закрывать тег элемента
+     */
+    protected $needClose = false;
+
+    /**
      * @return void
      */
     abstract public function tag();

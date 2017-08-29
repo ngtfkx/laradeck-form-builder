@@ -3,7 +3,7 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
-class Text extends AbstractElement
+class Password extends AbstractElement
 {
     public function __construct(?string $name = null, ?string $value = null)
     {
@@ -16,7 +16,7 @@ class Text extends AbstractElement
 
     public function tag(): void
     {
-        $this->tag = 'input type="text"';
+        $this->tag = 'input type="password"';
     }
 
 }
