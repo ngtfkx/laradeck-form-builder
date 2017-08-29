@@ -254,6 +254,19 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа checkbox
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @param bool|null $state
+     * @return Elements\Checkbox
+     */
+    public function checkbox(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checkbox
+    {
+        return new Elements\Checkbox($name, $value, $state);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string

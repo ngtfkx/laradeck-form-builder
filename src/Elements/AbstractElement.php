@@ -307,4 +307,15 @@ abstract class AbstractElement
 
         return $this;
     }
+
+    protected function addAttrAs(...$names): self
+    {
+        foreach ($names as $name) {
+            if (!empty($this->$name)) {
+                $this->parts[$name] = $name;
+            }
+        }
+
+        return $this;
+    }
 }
