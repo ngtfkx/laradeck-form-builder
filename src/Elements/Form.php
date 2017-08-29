@@ -126,7 +126,7 @@ class Form extends AbstractElement
         return $this;
     }
 
-    public function tag()
+    public function tag(): void
     {
         $this->tag = 'form';
     }

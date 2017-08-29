@@ -3,7 +3,7 @@
 namespace Ngtfkx\Laradeck\FormBuilder;
 
 
-use Ngtfkx\Laradeck\FormBuilder\Elements\Form;
+use Ngtfkx\Laradeck\FormBuilder\Elements;
 
 class FormBuilder
 {
@@ -13,7 +13,7 @@ class FormBuilder
     protected $isClosed = false;
 
     /**
-     * @var Form $form
+     * @var Elements\Form $form
      */
     protected $form;
 
@@ -30,11 +30,11 @@ class FormBuilder
      *
      * @param string $action URL для отправки данных формы
      * @param string $method Метод отправки данных формы
-     * @return FormBuilder
+     * @return Elements\Form
      */
-    public function open(string $action, string $method = 'get'): Form
+    public function open(string $action, string $method = 'get'): Elements\Form
     {
-        $this->form = (new Form())->action($action)->method($method);
+        $this->form = (new Elements\Form())->action($action)->method($method);
 
         return $this->form;
     }
@@ -49,6 +49,18 @@ class FormBuilder
         $this->isClosed = true;
 
         return $this;
+    }
+
+    /**
+     * Создать элемент формы типа hidden
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Hidden
+     */
+    public function hidden(string $name = null, string $value = null): Elements\Hidden
+    {
+        return new Elements\Hidden($name, $value);
     }
 
     /**

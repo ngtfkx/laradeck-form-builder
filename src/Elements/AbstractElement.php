@@ -68,10 +68,10 @@ abstract class AbstractElement
     /**
      * Сеттер значения элемента
      *
-     * @param $value
+     * @param string|null $value
      * @return AbstractElement
      */
-    public function value($value): self
+    public function value(?string $value): self
     {
         $this->value = $value;
 
@@ -81,10 +81,10 @@ abstract class AbstractElement
     /**
      * Сеттер атрибута id элемента
      *
-     * @param string $value
+     * @param string|null $value
      * @return AbstractElement
      */
-    public function id(string $value): self
+    public function id(?string $value): self
     {
         $this->id = $value;
 
@@ -94,10 +94,10 @@ abstract class AbstractElement
     /**
      * Сеттер атрибута name элемента
      *
-     * @param string $value
+     * @param string|null $value
      * @return AbstractElement
      */
-    public function name(string $value): self
+    public function name(?string $value): self
     {
         $this->name = $value;
 
@@ -252,7 +252,7 @@ abstract class AbstractElement
      */
     public function __toString()
     {
-        $this->addAttr('id', 'name');
+        $this->addAttr('id', 'name', 'value');
 
         $attributes = '';
 
