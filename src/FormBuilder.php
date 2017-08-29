@@ -68,11 +68,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Text
+     * @return Elements\Text\Text
      */
-    public function text(string $name = null, string $value = null): Elements\Text
+    public function text(string $name = null, string $value = null): Elements\Text\Text
     {
-        return new Elements\Text($name, $value);
+        return new Elements\Text\Text($name, $value);
     }
 
     /**
@@ -80,11 +80,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Email
+     * @return Elements\Text\Email
      */
-    public function email(string $name = null, string $value = null): Elements\Email
+    public function email(string $name = null, string $value = null): Elements\Text\Email
     {
-        return new Elements\Email($name, $value);
+        return new Elements\Text\Email($name, $value);
     }
 
     /**
@@ -92,11 +92,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Password
+     * @return Elements\Text\Password
      */
-    public function password(string $name = null, string $value = null): Elements\Password
+    public function password(string $name = null, string $value = null): Elements\Text\Password
     {
-        return new Elements\Password($name, $value);
+        return new Elements\Text\Password($name, $value);
     }
 
     /**
@@ -104,11 +104,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Number
+     * @return Elements\Text\Number
      */
-    public function number(string $name = null, string $value = null): Elements\Number
+    public function number(string $name = null, string $value = null): Elements\Text\Number
     {
-        return new Elements\Number($name, $value);
+        return new Elements\Text\Number($name, $value);
     }
 
     /**
@@ -116,11 +116,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Tel
+     * @return Elements\Text\Tel
      */
-    public function tel(string $name = null, string $value = null): Elements\Tel
+    public function tel(string $name = null, string $value = null): Elements\Text\Tel
     {
-        return new Elements\Tel($name, $value);
+        return new Elements\Text\Tel($name, $value);
     }
 
     /**
@@ -128,11 +128,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Color
+     * @return Elements\Text\Color
      */
-    public function color(string $name = null, string $value = null): Elements\Color
+    public function color(string $name = null, string $value = null): Elements\Text\Color
     {
-        return new Elements\Color($name, $value);
+        return new Elements\Text\Color($name, $value);
     }
 
     /**
@@ -140,11 +140,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Datetime
+     * @return Elements\Text\Datetime
      */
-    public function datetime(string $name = null, string $value = null): Elements\Datetime
+    public function datetime(string $name = null, string $value = null): Elements\Text\Datetime
     {
-        return new Elements\Datetime($name, $value);
+        return new Elements\Text\Datetime($name, $value);
     }
 
     /**
@@ -152,11 +152,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Tel
+     * @return Elements\Text\Date
      */
-    public function date(string $name = null, string $value = null): Elements\Date
+    public function date(string $name = null, string $value = null): Elements\Text\Date
     {
-        return new Elements\Date($name, $value);
+        return new Elements\Text\Date($name, $value);
     }
 
     /**
@@ -164,11 +164,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Range
+     * @return Elements\Text\Range
      */
-    public function range(string $name = null, string $value = null): Elements\Range
+    public function range(string $name = null, string $value = null): Elements\Text\Range
     {
-        return new Elements\Range($name, $value);
+        return new Elements\Text\Range($name, $value);
     }
 
     /**
@@ -176,11 +176,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Search
+     * @return Elements\Text\Search
      */
-    public function search(string $name = null, string $value = null): Elements\Search
+    public function search(string $name = null, string $value = null): Elements\Text\Search
     {
-        return new Elements\Search($name, $value);
+        return new Elements\Text\Search($name, $value);
     }
 
     /**
@@ -188,11 +188,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Time
+     * @return Elements\Text\Time
      */
-    public function time(string $name = null, string $value = null): Elements\Time
+    public function time(string $name = null, string $value = null): Elements\Text\Time
     {
-        return new Elements\Time($name, $value);
+        return new Elements\Text\Time($name, $value);
     }
 
     /**
@@ -200,11 +200,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Url
+     * @return Elements\Text\Url
      */
-    public function url(string $name = null, string $value = null): Elements\Url
+    public function url(string $name = null, string $value = null): Elements\Text\Url
     {
-        return new Elements\Url($name, $value);
+        return new Elements\Text\Url($name, $value);
     }
 
     /**
@@ -212,11 +212,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Month
+     * @return Elements\Text\Month
      */
-    public function month(string $name = null, string $value = null): Elements\Month
+    public function month(string $name = null, string $value = null): Elements\Text\Month
     {
-        return new Elements\Month($name, $value);
+        return new Elements\Text\Month($name, $value);
     }
 
     /**
@@ -224,11 +224,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Week
+     * @return Elements\Text\Week
      */
-    public function week(string $name = null, string $value = null): Elements\Week
+    public function week(string $name = null, string $value = null): Elements\Text\Week
     {
-        return new Elements\Week($name, $value);
+        return new Elements\Text\Week($name, $value);
     }
 
     /**
@@ -236,11 +236,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Submit
+     * @return Elements\Submit\Submit
      */
-    public function submit(string $name = null, string $value = null): Elements\Submit
+    public function submit(string $name = null, string $value = null): Elements\Submit\Submit
     {
-        return new Elements\Submit($name, $value);
+        return new Elements\Submit\Submit($name, $value);
     }
 
     /**
@@ -248,11 +248,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Reset
+     * @return Elements\Submit\Reset
      */
-    public function reset(string $name = null, string $value = null): Elements\Reset
+    public function reset(string $name = null, string $value = null): Elements\Submit\Reset
     {
-        return new Elements\Reset($name, $value);
+        return new Elements\Submit\Reset($name, $value);
     }
 
     /**
@@ -260,11 +260,11 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Button
+     * @return Elements\Area\Button
      */
-    public function button(string $name = null, string $value = null): Elements\Button
+    public function button(string $name = null, string $value = null): Elements\Area\Button
     {
-        return new Elements\Button($name, $value);
+        return new Elements\Area\Button($name, $value);
     }
 
     /**
@@ -272,33 +272,33 @@ class FormBuilder
      *
      * @param string|null $name
      * @param string|null $value
-     * @return Elements\Textarea
+     * @return Elements\Area\Textarea
      */
-    public function textarea(string $name = null, string $value = null): Elements\Textarea
+    public function textarea(string $name = null, string $value = null): Elements\Area\Textarea
     {
-        return new Elements\Textarea($name, $value);
+        return new Elements\Area\Textarea($name, $value);
     }
 
     /**
      * Создать элемент формы типа file
      *
      * @param string|null $name
-     * @return Elements\File
+     * @return Elements\File\File
      */
-    public function file(string $name = null): Elements\File
+    public function file(string $name = null): Elements\File\File
     {
-        return new Elements\File($name);
+        return new Elements\File\File($name);
     }
 
     /**
      * Создать элемент формы типа image
      *
      * @param string|null $name
-     * @return Elements\Image
+     * @return Elements\File\Image
      */
-    public function image(string $name = null): Elements\Image
+    public function image(string $name = null): Elements\File\Image
     {
-        return new Elements\Image($name);
+        return new Elements\File\Image($name);
     }
 
     /**
@@ -307,11 +307,11 @@ class FormBuilder
      * @param string|null $name
      * @param string|null $value
      * @param bool|null $state
-     * @return Elements\Checkbox
+     * @return Elements\Checked\Checkbox
      */
-    public function checkbox(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checkbox
+    public function checkbox(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checked\Checkbox
     {
-        return new Elements\Checkbox($name, $value, $state);
+        return new Elements\Checked\Checkbox($name, $value, $state);
     }
 
     /**
@@ -322,9 +322,9 @@ class FormBuilder
      * @param bool|null $state
      * @return Elements\Radio
      */
-    public function radio(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Radio
+    public function radio(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checked\Radio
     {
-        return new Elements\Radio($name, $value, $state);
+        return new Elements\Checked\Radio($name, $value, $state);
     }
 
     /**

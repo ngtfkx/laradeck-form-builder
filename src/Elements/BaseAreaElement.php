@@ -3,8 +3,10 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
-class Reset extends AbstractElement
+abstract class BaseAreaElement extends AbstractElement
 {
+    protected $needClose = true;
+
     public function __construct(?string $name = null, ?string $value = null)
     {
         $this->name($name);
@@ -13,10 +15,4 @@ class Reset extends AbstractElement
 
         parent::__construct();
     }
-
-    public function tag(): void
-    {
-        $this->tag = 'input type="reset"';
-    }
-
 }

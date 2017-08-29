@@ -3,7 +3,7 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
-class Checkbox extends AbstractElement
+abstract class BaseCheckedElement extends AbstractElement
 {
     public $checked = false;
 
@@ -21,11 +21,6 @@ class Checkbox extends AbstractElement
     public function checked(?bool $state = true)
     {
         $this->checked = $state ?: false;
-    }
-
-    public function tag(): void
-    {
-        $this->tag = 'input type="checkbox"';
     }
 
     public function __toString()

@@ -3,7 +3,7 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
-class Email extends AbstractElement
+abstract class BaseTextElement extends AbstractElement
 {
     public function __construct(?string $name = null, ?string $value = null)
     {
@@ -13,10 +13,4 @@ class Email extends AbstractElement
 
         parent::__construct();
     }
-
-    public function tag(): void
-    {
-        $this->tag = 'input type="email"';
-    }
-
 }

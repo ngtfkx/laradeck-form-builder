@@ -3,7 +3,7 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
-class Submit extends AbstractElement
+abstract class BaseSubmitElement extends AbstractElement
 {
     public function __construct(?string $name = null, ?string $value = null)
     {
@@ -13,10 +13,4 @@ class Submit extends AbstractElement
 
         parent::__construct();
     }
-
-    public function tag(): void
-    {
-        $this->tag = 'input type="submit"';
-    }
-
 }
