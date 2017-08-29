@@ -18,17 +18,17 @@ trait Common
     protected $name;
 
     /**
-     * @var Collection $classes Коллекция классом элемента
+     * @var Collection|iterable $classes Коллекция классом элемента
      */
     protected $classes;
 
     /**
-     * @var Collection $attributes Коллекция дополнительных атрибутов элемента
+     * @var Collection|iterable $attributes Коллекция дополнительных атрибутов элемента
      */
     protected $attributes;
 
     /**
-     * @var Collection $styles Коллекция inline-стилей элемента
+     * @var Collection|iterable $styles Коллекция inline-стилей элемента
      */
     protected $styles;
 
@@ -79,8 +79,8 @@ trait Common
      */
     public function classes(iterable $classes): self
     {
-        foreach($classes as $class) {
-            if(!$this->classes->contains($class)) {
+        foreach ($classes as $class) {
+            if (!$this->classes->contains($class)) {
                 $this->classes->push($class);
             }
         }
@@ -121,7 +121,7 @@ trait Common
      */
     public function styles(iterable $styles): self
     {
-        foreach($styles as $key => $value) {
+        foreach ($styles as $key => $value) {
             $this->styles->put($key, $value);
         }
 
@@ -150,15 +150,51 @@ trait Common
      */
     public function attrs(iterable $attributes): self
     {
-        foreach($attributes as $key => $value) {
+        foreach ($attributes as $key => $value) {
             if ($key === 'class') {
                 $this->class($value);
-            } else if($key === 'style') {
+            } else if ($key === 'style') {
                 $this->style($value);
             } else {
                 $this->attributes->put($key, $value);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Очистить классы элемента
+     *
+     * @return Common
+     */
+    public function clearClasses(): self
+    {
+        $this->classes = new Collection();
+
+        return $this;
+    }
+
+    /**
+     * Очистить классы стили
+     *
+     * @return Common
+     */
+    public function clearStyles(): self
+    {
+        $this->styles = new Collection();
+
+        return $this;
+    }
+
+    /**
+     * Очистить классы атрибуты
+     *
+     * @return Common
+     */
+    public function clearAttributes(): self
+    {
+        $this->attributes = new Collection();
 
         return $this;
     }

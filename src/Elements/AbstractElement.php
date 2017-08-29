@@ -104,6 +104,8 @@ abstract class AbstractElement
             $attributes .= ' ' . $key . '="' . $value . '"';
         }
 
+        $this->parts = new Collection();
+
         return '<' . $this->tag . $attributes . '>';
     }
 
