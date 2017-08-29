@@ -257,7 +257,11 @@ abstract class AbstractElement
      */
     public function __toString()
     {
-        $this->addAttr('id', 'name', 'value');
+        $this->addAttr('id', 'name');
+
+        if (!$this->needClose) {
+            $this->addAttr('value');
+        }
 
         $attributes = '';
 
@@ -294,7 +298,9 @@ abstract class AbstractElement
 
         $this->parts = new Collection();
 
-        return '<' . $this->tag . $attributes . '>';
+        return $this->needClose
+            ? '<' . $this->tag . $attributes . '>' . $this->value . '</' . $this->tag . '>'
+            : '<' . $this->tag . $attributes . '>';
     }
 
     protected function addAttr(...$names): self

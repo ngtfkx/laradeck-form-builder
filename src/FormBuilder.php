@@ -256,6 +256,30 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа button
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Button
+     */
+    public function button(string $name = null, string $value = null): Elements\Button
+    {
+        return new Elements\Button($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа textarea
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Textarea
+     */
+    public function textarea(string $name = null, string $value = null): Elements\Textarea
+    {
+        return new Elements\Textarea($name, $value);
+    }
+
+    /**
      * Создать элемент формы типа file
      *
      * @param string|null $name
