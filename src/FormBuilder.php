@@ -328,6 +328,19 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа select
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @param iterable|null $options
+     * @return Elements\Select
+     */
+    public function select(string $name = null, string $value = null, ?iterable $options = null): Elements\Select
+    {
+        return new Elements\Select($name, $value, $options);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string

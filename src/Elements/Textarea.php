@@ -20,5 +20,4 @@ class Textarea extends AbstractElement
     {
         $this->tag = 'textarea';
     }
-
 }
