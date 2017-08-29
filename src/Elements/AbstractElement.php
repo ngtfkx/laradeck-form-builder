@@ -11,18 +11,30 @@ abstract class AbstractElement
     use Traits\Common;
 
     /**
+     * Значение элемента
+     *
      * @var string
      */
     protected $value;
 
     /**
+     * Тег элемента
+     *
      * @var string
      */
     protected $tag;
 
-    abstract function tag();
+    /**
+     * Набор атрибутов для генерации html-кода элементов
+     *
+     * @var Collection
+     */
+    protected $parts;
 
-    protected $parts = [];
+    /**
+     * @return void
+     */
+    abstract public function tag();
 
     public function __construct()
     {
@@ -37,6 +49,12 @@ abstract class AbstractElement
         $this->tag();
     }
 
+    /**
+     * Сеттер значения элемента
+     *
+     * @param $value
+     * @return AbstractElement
+     */
     public function value($value): self
     {
         $this->value = $value;
@@ -44,6 +62,11 @@ abstract class AbstractElement
         return $this;
     }
 
+    /**
+     * Преобразовать в строку для вывода в HTML
+     *
+     * @return string
+     */
     public function __toString()
     {
         $this->addAttr('id', 'name');

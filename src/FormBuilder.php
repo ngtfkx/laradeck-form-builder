@@ -12,37 +12,37 @@ class FormBuilder
     use Common;
 
     /**
-     * @var string
+     * @var string URL для отправки данных формы
      */
     protected $action = '';
 
     /**
-     * @var string
+     * @var string Метод отправки данных формы
      */
     protected $method = 'get';
 
     /**
-     * @var bool
+     * @var bool Признак включения/отключения автозаполнения полей формы
      */
     protected $autocomplete = true;
 
     /**
-     * @var bool
+     * @var bool Признак включения/откючения автовалидации перед отправкой данных
      */
     protected $novalidate = false;
 
     /**
-     * @var string
+     * @var string В каком окне открывать результат обработки формы
      */
     protected $target = '_self';
 
     /**
-     * @var string
+     * @var string Тип кодировки данных при отправке
      */
     protected $enctype = 'application/x-www-form-urlencoded';
 
     /**
-     * @var bool
+     * @var bool Признак, что форма должна быть закрыта
      */
     protected $isClosed = false;
 
@@ -58,7 +58,14 @@ class FormBuilder
         $this->styles = new Collection();
     }
 
-    public function open($action, $method = 'get'): FormBuilder
+    /**
+     * Открыть форму
+     *
+     * @param string $action URL для отправки данных формы
+     * @param string $method Метод отправки данных формы
+     * @return FormBuilder
+     */
+    public function open(string $action, string $method = 'get'): FormBuilder
     {
         $this->action = $action;
 
@@ -69,6 +76,11 @@ class FormBuilder
         return $this;
     }
 
+    /**
+     * Закрыть форму
+     *
+     * @return FormBuilder
+     */
     public function close(): FormBuilder
     {
         $this->isClosed = true;
@@ -76,28 +88,55 @@ class FormBuilder
         return $this;
     }
 
-    protected function enctype($value): FormBuilder
+    /**
+     * Сеттер для установки типа кодировки данных при отправке
+     *
+     * @param string $value
+     * @return FormBuilder
+     */
+    protected function enctype(string $value): FormBuilder
     {
         $this->enctype = $value;
 
         return $this;
     }
 
+    /**
+     * Установить тип отправки данных multipart/form-data
+     *
+     * @return FormBuilder
+     */
     public function multipart(): FormBuilder
     {
         return $this->enctype('multipart/form-data');
     }
 
+    /**
+     * Установить тип отправки данных text/plain
+     *
+     * @return FormBuilder
+     */
     public function plain(): FormBuilder
     {
         return $this->enctype('text/plain');
     }
 
+    /**
+     * Установить тип отправки данных application/x-www-form-urlencoded
+     *
+     * @return FormBuilder
+     */
     public function urlencoded (): FormBuilder
     {
         return $this->enctype('application/x-www-form-urlencoded');
     }
 
+    /**
+     * Сеттер для установки признака включения/отключения автозаполнения полей формы
+     *
+     * @param bool $state
+     * @return FormBuilder
+     */
     public function autocomplete(bool $state = true): FormBuilder
     {
         $this->autocomplete = $state;
@@ -105,6 +144,12 @@ class FormBuilder
         return $this;
     }
 
+    /**
+     * Сеттер для установки признака включения/отключения автовалидации перед отправкой данных
+     *
+     * @param bool $state
+     * @return FormBuilder
+     */
     public function novalidate(bool $state = true): FormBuilder
     {
         $this->novalidate = $state;
@@ -112,6 +157,11 @@ class FormBuilder
         return $this;
     }
 
+    /**
+     * Преобразовать в строку для вывода в HTML
+     *
+     * @return string
+     */
     public function __toString()
     {
         if ($this->isClosed) {

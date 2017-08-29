@@ -5,7 +5,7 @@ namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 class Form extends AbstractElement
 {
-    function tag()
+    public function tag()
     {
         $this->tag = 'form';
     }
