@@ -320,7 +320,7 @@ class FormBuilder
      * @param string|null $name
      * @param string|null $value
      * @param bool|null $state
-     * @return Elements\Radio
+     * @return Elements\Checked\Radio
      */
     public function radio(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checked\Radio
     {
