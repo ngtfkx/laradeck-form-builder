@@ -232,6 +232,28 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа file
+     *
+     * @param string|null $name
+     * @return Elements\File
+     */
+    public function file(string $name = null): Elements\File
+    {
+        return new Elements\File($name);
+    }
+
+    /**
+     * Создать элемент формы типа image
+     *
+     * @param string|null $name
+     * @return Elements\Image
+     */
+    public function image(string $name = null): Elements\Image
+    {
+        return new Elements\Image($name);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string
