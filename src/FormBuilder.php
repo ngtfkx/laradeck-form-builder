@@ -267,6 +267,19 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа radio
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @param bool|null $state
+     * @return Elements\Radio
+     */
+    public function radio(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Radio
+    {
+        return new Elements\Radio($name, $value, $state);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string
