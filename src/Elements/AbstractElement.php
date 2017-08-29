@@ -257,28 +257,26 @@ abstract class AbstractElement
      */
     public function __toString()
     {
-        $this->addAttr('id', 'name');
 
-        if (!$this->needClose) {
-            $this->addAttr('value');
-        }
 
+        $this->classesToParts();
+
+        $this->stylesToParts();
+
+        $this->attributesToParts();
+
+        $attributes = $this->generateAttributes();
+
+        $this->parts = new Collection();
+
+        return $this->needClose
+            ? '<' . $this->tag . $attributes . '>' . $this->value . '</' . $this->tag . '>'
+            : '<' . $this->tag . $attributes . '>';
+    }
+
+    protected function generateAttributes(): string
+    {
         $attributes = '';
-
-        if ($this->classes->isNotEmpty()) {
-            $this->parts->put('class', $this->classes->implode(' '));
-        }
-
-        if ($this->styles->isNotEmpty()) {
-            $this->parts->put('style', $this->styles->pipe(function ($styles) {
-                $styleAttr = '';
-                foreach ($styles as $key => $value) {
-                    $styleAttr .= $key . ':' . $value . ';';
-                }
-
-                return $styleAttr;
-            }));
-        }
 
         foreach ($this->parts as $key => $value) {
             if (is_bool($value) && $value === false) {
@@ -296,11 +294,37 @@ abstract class AbstractElement
             $attributes .= ' ' . $key . '="' . $value . '"';
         }
 
-        $this->parts = new Collection();
+        return $attributes;
+    }
 
-        return $this->needClose
-            ? '<' . $this->tag . $attributes . '>' . $this->value . '</' . $this->tag . '>'
-            : '<' . $this->tag . $attributes . '>';
+    protected function stylesToParts(): void
+    {
+        if ($this->styles->isNotEmpty()) {
+            $this->parts->put('style', $this->styles->pipe(function ($styles) {
+                $styleAttr = '';
+                foreach ($styles as $key => $value) {
+                    $styleAttr .= $key . ':' . $value . ';';
+                }
+
+                return $styleAttr;
+            }));
+        }
+    }
+
+    protected function classesToParts(): void
+    {
+        if ($this->classes->isNotEmpty()) {
+            $this->parts->put('class', $this->classes->implode(' '));
+        }
+    }
+
+    public function attributesToParts(): void
+    {
+        $this->addAttr('id', 'name');
+
+        if (!$this->needClose) {
+            $this->addAttr('value');
+        }
     }
 
     protected function addAttr(...$names): self
