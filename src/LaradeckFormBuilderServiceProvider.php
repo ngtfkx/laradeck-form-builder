@@ -13,7 +13,7 @@ class LaradeckFormBuilderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 
     /**
@@ -23,6 +23,6 @@ class LaradeckFormBuilderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+       include_once __DIR__ . '/helpers.php';
     }
 }
