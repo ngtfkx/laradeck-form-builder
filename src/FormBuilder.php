@@ -124,6 +124,114 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа color
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Color
+     */
+    public function color(string $name = null, string $value = null): Elements\Color
+    {
+        return new Elements\Color($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа datetime
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Datetime
+     */
+    public function datetime(string $name = null, string $value = null): Elements\Datetime
+    {
+        return new Elements\Datetime($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа date
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Tel
+     */
+    public function date(string $name = null, string $value = null): Elements\Date
+    {
+        return new Elements\Date($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа range
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Range
+     */
+    public function range(string $name = null, string $value = null): Elements\Range
+    {
+        return new Elements\Range($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа search
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Search
+     */
+    public function search(string $name = null, string $value = null): Elements\Search
+    {
+        return new Elements\Search($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа time
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Time
+     */
+    public function time(string $name = null, string $value = null): Elements\Time
+    {
+        return new Elements\Time($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа url
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Url
+     */
+    public function url(string $name = null, string $value = null): Elements\Url
+    {
+        return new Elements\Url($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа month
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Month
+     */
+    public function month(string $name = null, string $value = null): Elements\Month
+    {
+        return new Elements\Month($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа week
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Week
+     */
+    public function week(string $name = null, string $value = null): Elements\Week
+    {
+        return new Elements\Week($name, $value);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string
