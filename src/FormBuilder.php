@@ -232,6 +232,30 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа submit
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Submit
+     */
+    public function submit(string $name = null, string $value = null): Elements\Submit
+    {
+        return new Elements\Submit($name, $value);
+    }
+
+    /**
+     * Создать элемент формы типа reset
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Reset
+     */
+    public function reset(string $name = null, string $value = null): Elements\Reset
+    {
+        return new Elements\Reset($name, $value);
+    }
+
+    /**
      * Создать элемент формы типа file
      *
      * @param string|null $name
