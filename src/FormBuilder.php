@@ -64,6 +64,18 @@ class FormBuilder
     }
 
     /**
+     * Создать элемент формы типа text
+     *
+     * @param string|null $name
+     * @param string|null $value
+     * @return Elements\Text
+     */
+    public function text(string $name = null, string $value = null): Elements\Text
+    {
+        return new Elements\Text($name, $value);
+    }
+
+    /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string
