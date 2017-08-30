@@ -183,10 +183,10 @@ abstract class AbstractElement
      * Добавить аттрибут к элементу
      *
      * @param string $key
-     * @param string|null $value
+     * @param mixed $value
      * @return AbstractElement
      */
-    public function attr(string $key, string $value = null): self
+    public function attr(string $key, $value = null): self
     {
         $this->attributes->put($key, $value);
 
@@ -287,15 +287,6 @@ abstract class AbstractElement
             $attributes .= ' ' . $key . '="' . $value . '"';
         }
 
-        foreach ($this->attributes as $key => $value) {
-            if (is_null($value) || (is_bool($value) && $value === false)) {
-                continue;
-            } else if (is_bool($value)) {
-                $value = $key;
-            }
-            $attributes .= ' ' . $key . '="' . $value . '"';
-        }
-
         return $attributes;
     }
 
@@ -326,6 +317,10 @@ abstract class AbstractElement
 
         if (!$this->needClose) {
             $this->addAttr('value');
+        }
+
+        foreach ($this->attributes as $key => $value) {
+            $this->parts->put($key, $value);
         }
     }
 
