@@ -295,17 +295,21 @@ abstract class AbstractElement
         $tag = str_replace('**attributes**', $attributes, $tag);
 
         if (is_null($this->layout) === false) {
-            $view = 'fb::' . $this->layout->getViewsDirPath() . '.base';
+            $views = [
+                'fb::' . $this->layout->getViewsDirPath() . '.' . strtolower(class_basename($this)),
+                'fb::' . $this->layout->getViewsDirPath() . '.base',
+            ];
+            foreach ($views as $view){
+                if (view()->exists($view) && $this->onlyTagRender === false) {
+                    $data = [
+                        'id' => 'idddd',
+                        'help' => 'ggggggggggg',
+                        'label' => '45345345',
+                        'tag' => $tag,
+                    ];
 
-            if(view()->exists($view) && $this->onlyTagRender === false) {
-                $data = [
-                    'id' => 'idddd',
-                    'help' => 'ggggggggggg',
-                    'label' => '45345345',
-                    'tag' => $tag,
-                ];
-
-                return view($view, $data);
+                    return view($view, $data);
+                }
             }
         }
 
@@ -326,7 +330,7 @@ abstract class AbstractElement
         }
     }
 
-    protected  function afterToParts(): void
+    protected function afterToParts(): void
     {
 
     }
