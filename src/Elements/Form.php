@@ -18,22 +18,22 @@ class Form extends AbstractElement
     /**
      * @var bool Признак включения/отключения автозаполнения полей формы
      */
-    protected $autocomplete = true;
+    protected $autocomplete;
 
     /**
      * @var bool Признак включения/откючения автовалидации перед отправкой данных
      */
-    protected $novalidate = false;
+    protected $novalidate;
 
     /**
      * @var string В каком окне открывать результат обработки формы
      */
-    protected $target = '_self';
+    protected $target;
 
     /**
      * @var string Тип кодировки данных при отправке
      */
-    protected $enctype = 'application/x-www-form-urlencoded';
+    protected $enctype;
 
     /**
      * @param string $value
@@ -133,9 +133,7 @@ class Form extends AbstractElement
 
     public function __toString()
     {
-        $this->id($this->id)
-            ->name($this->name)
-            ->attrs([
+        $this->attrs([
                 'action' => $this->action,
                 'method' => $this->method,
                 'enctype' => $this->enctype,
