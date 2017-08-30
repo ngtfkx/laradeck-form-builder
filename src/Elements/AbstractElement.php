@@ -240,28 +240,27 @@ abstract class AbstractElement
         return $this;
     }
 
+    protected function render(): string
+    {
+        $attributes = $this->generateAttributes();
+
+        return '<' . $this->tag . $attributes . '>';
+    }
+
     /**
      * Преобразовать в строку для вывода в HTML
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-
-
         $this->classesToParts();
 
         $this->stylesToParts();
 
         $this->attributesToParts();
 
-        $attributes = $this->generateAttributes();
-
-        $this->parts = new Collection();
-
-        return $this->needClose
-            ? '<' . $this->tag . $attributes . '>' . $this->value . '</' . $this->tag . '>'
-            : '<' . $this->tag . $attributes . '>';
+        return $this->render();
     }
 
     protected function generateAttributes(): string

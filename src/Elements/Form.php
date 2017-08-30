@@ -144,7 +144,7 @@ class Form extends AbstractElement
         $this->tag = 'form';
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $this->attrs([
                 'action' => $this->action,

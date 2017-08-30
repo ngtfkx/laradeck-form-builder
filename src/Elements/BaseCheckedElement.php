@@ -23,7 +23,7 @@ abstract class BaseCheckedElement extends AbstractElement
         $this->checked = $state ?: false;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $this->addAttrAs('checked');
 
