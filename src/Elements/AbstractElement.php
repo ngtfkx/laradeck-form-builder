@@ -8,11 +8,6 @@ use Illuminate\Support\Collection;
 abstract class AbstractElement
 {
     /**
-     * @var string $id Значение атрибута ID элемента
-     */
-    protected $id;
-
-    /**
      * @var string $name Значение атрибута name элемента
      */
     protected $name;
@@ -91,7 +86,7 @@ abstract class AbstractElement
      */
     public function id(?string $value): self
     {
-        $this->id = $value;
+        $this->attr('id', $value);
 
         return $this;
     }
@@ -313,7 +308,7 @@ abstract class AbstractElement
 
     public function attributesToParts(): void
     {
-        $this->addAttr('id', 'name');
+        $this->addAttr('name');
 
         if (!$this->needClose) {
             $this->addAttr('value');
