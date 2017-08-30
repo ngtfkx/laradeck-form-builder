@@ -281,6 +281,8 @@ abstract class AbstractElement
         foreach ($this->parts as $key => $value) {
             if (is_null($value) || (is_bool($value) && $value === false)) {
                 continue;
+            } else if (is_bool($value)) {
+                $value = $key;
             }
             $attributes .= ' ' . $key . '="' . $value . '"';
         }
