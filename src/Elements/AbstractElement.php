@@ -8,11 +8,6 @@ use Illuminate\Support\Collection;
 abstract class AbstractElement
 {
     /**
-     * @var string $name Значение атрибута name элемента
-     */
-    protected $name;
-
-    /**
      * @var Collection|iterable $classes Коллекция классом элемента
      */
     protected $classes;
@@ -99,7 +94,7 @@ abstract class AbstractElement
      */
     public function name(?string $value): self
     {
-        $this->name = $value;
+        $this->attr('name', $value);
 
         return $this;
     }
@@ -308,8 +303,6 @@ abstract class AbstractElement
 
     public function attributesToParts(): void
     {
-        $this->addAttr('name');
-
         if (!$this->needClose) {
             $this->addAttr('value');
         }
