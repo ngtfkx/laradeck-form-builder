@@ -173,7 +173,7 @@ abstract class AbstractElement
      * Добавить аттрибут к элементу
      *
      * @param string $key
-     * @param mixed $value
+     * @param string|null $value
      * @return AbstractElement
      */
     public function attr(string $key, $value = null): self
