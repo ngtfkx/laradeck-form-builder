@@ -9,13 +9,13 @@ abstract class BaseCheckedElement extends AbstractElement
 
     public function __construct(?string $name = null, ?string $value = '1', ?bool $state = false)
     {
+        parent::__construct();
+
         $this->name($name);
 
         $this->value($value);
 
         $this->checked($state);
-
-        parent::__construct();
     }
 
     public function checked(?bool $state = true)

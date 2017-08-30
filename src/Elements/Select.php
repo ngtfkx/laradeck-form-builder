@@ -11,6 +11,8 @@ class Select extends AbstractElement
 
     public function __construct(?string $name = null, ?string $value = null, ?iterable $options = null)
     {
+        parent::__construct();
+
         $this->name($name);
 
         $this->selected($value);
@@ -26,8 +28,6 @@ class Select extends AbstractElement
 
             $this->value($opt);
         }
-
-        parent::__construct();
     }
 
     public function selected($value = null)
