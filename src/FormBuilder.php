@@ -18,11 +18,39 @@ class FormBuilder
     protected $form;
 
     /**
+     * Тип верстки. Допустимые значения: html, bootstrap3, bootstrap4
+     * @var string
+     */
+    protected $cssFramework = 'html';
+
+    /**
+     * Тип верстки формы
+     * @var string
+     */
+    protected $formLayout;
+
+    /**
      * FormBuilder constructor.
      */
     public function __construct()
     {
 
+    }
+
+    /**
+     * Сеттер для шаблона верстки (тип фремворка и тип расположения формы)
+     *
+     * @param string $cssFramework
+     * @param null|string $formLayout
+     * @return FormBuilder
+     */
+    public function layout(string $cssFramework, ?string $formLayout = null): FormBuilder
+    {
+        $this->cssFramework = $cssFramework;
+
+        $this->formLayout = $formLayout;
+
+        // TODO: надо вешать стили на тег формы в зависимости от переданных данных
     }
 
     /**
