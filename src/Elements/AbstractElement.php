@@ -247,6 +247,16 @@ abstract class AbstractElement
         return '<' . $this->tag . $attributes . '>';
     }
 
+    protected function beforeToParts(): void
+    {
+        $this->addAttr('value');
+    }
+
+    protected  function afterToParts(): void
+    {
+
+    }
+
     /**
      * Преобразовать в строку для вывода в HTML
      *
@@ -254,11 +264,15 @@ abstract class AbstractElement
      */
     public function __toString(): string
     {
+        $this->beforeToParts();
+
         $this->classesToParts();
 
         $this->stylesToParts();
 
         $this->attributesToParts();
+
+        $this->afterToParts();
 
         return $this->render();
     }
@@ -302,10 +316,6 @@ abstract class AbstractElement
 
     public function attributesToParts(): void
     {
-        if (!$this->needClose) {
-            $this->addAttr('value');
-        }
-
         foreach ($this->attributes as $key => $value) {
             $this->parts->put($key, $value);
         }

@@ -16,17 +16,15 @@ abstract class BaseAreaElement extends AbstractElement
         parent::__construct();
     }
 
+    protected function beforeToParts(): void
+    {
+
+    }
+
     protected function render(): string
     {
         $attributes = $this->generateAttributes();
 
         return '<' . $this->tag . $attributes . '>' . $this->value . '</' . $this->tag . '>';
-    }
-
-    public function __toString(): string
-    {
-        $this->addAttrAs('checked');
-
-        return parent::__toString();
     }
 }
