@@ -36,10 +36,10 @@ class Form extends AbstractElement
     protected $enctype;
 
     /**
-     * @param string $value
+     * @param string|null $value
      * @return Form
      */
-    public function action(string $value): Form
+    public function action(?string $value = ''): Form
     {
         $this->action = $value;
 
@@ -47,10 +47,10 @@ class Form extends AbstractElement
     }
 
     /**
-     * @param string $value
+     * @param string|null  $value
      * @return Form
      */
-    public function method(string $value): Form
+    public function method(?string $value): Form
     {
         $this->method = $value;
 
@@ -66,6 +66,19 @@ class Form extends AbstractElement
     protected function enctype(string $value): Form
     {
         $this->enctype = $value;
+
+        return $this;
+    }
+
+    /**
+     * Сеттер для установки указания в каком окнеоткрывать результат работы
+     *
+     * @param string|null $value
+     * @return Form
+     */
+    public function target(?string $value): Form
+    {
+        $this->target = $value;
 
         return $this;
     }
@@ -103,10 +116,10 @@ class Form extends AbstractElement
     /**
      * Сеттер для установки признака включения/отключения автозаполнения полей формы
      *
-     * @param bool $state
+     * @param bool|null $state
      * @return Form
      */
-    public function autocomplete(bool $state = true): Form
+    public function autocomplete(?bool $state = true): Form
     {
         $this->autocomplete = $state;
 
@@ -116,10 +129,10 @@ class Form extends AbstractElement
     /**
      * Сеттер для установки признака включения/отключения автовалидации перед отправкой данных
      *
-     * @param bool $state
+     * @param bool|null $state
      * @return Form
      */
-    public function novalidate(bool $state = true): Form
+    public function novalidate(?bool $state = true): Form
     {
         $this->novalidate = $state;
 
@@ -136,6 +149,7 @@ class Form extends AbstractElement
         $this->attrs([
                 'action' => $this->action,
                 'method' => $this->method,
+                'target' => $this->target,
                 'enctype' => $this->enctype,
                 'autocomplete' => $this->autocomplete,
                 'novalidate' => $this->novalidate,

@@ -32,7 +32,7 @@ class FormBuilder
      * @param string $method Метод отправки данных формы
      * @return Elements\Form
      */
-    public function open(string $action, string $method = 'get'): Elements\Form
+    public function open(?string $action = '', ?string $method = 'get'): Elements\Form
     {
         $this->form = (new Elements\Form())->action($action)->method($method);
 
