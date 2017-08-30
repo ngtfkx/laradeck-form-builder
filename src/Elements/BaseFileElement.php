@@ -11,8 +11,8 @@ abstract class BaseFileElement extends AbstractElement
 
     public function __construct(?string $name = null)
     {
-        $this->name($name);
-
         parent::__construct();
+
+        $this->name($name);
     }
 }
