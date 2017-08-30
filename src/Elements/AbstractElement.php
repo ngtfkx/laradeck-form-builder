@@ -38,9 +38,14 @@ abstract class AbstractElement
     protected $parts;
 
     /**
-     * @var bool $needClose Признак, что надо закрывать тег элемента
+     * @var string $label
      */
-    protected $needClose = false;
+    protected $label;
+
+    /**
+     * @var string $help
+     */
+    protected $help;
 
     /**
      * @return void
@@ -58,6 +63,32 @@ abstract class AbstractElement
         $this->parts = new Collection();
 
         $this->tag();
+    }
+
+    /**
+     * Сеттер значения лейбла для элемента
+     *
+     * @param string|null $value
+     * @return AbstractElement
+     */
+    public function label(?string $value): self
+    {
+        $this->label = $value;
+
+        return $this;
+    }
+
+    /**
+     * Сеттер значения подсказки для элемента
+     *
+     * @param string|null $value
+     * @return AbstractElement
+     */
+    public function help(?string $value): self
+    {
+        $this->help = $value;
+
+        return $this;
     }
 
     /**
