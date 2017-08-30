@@ -13,7 +13,7 @@ class LaradeckFormBuilderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        $this->loadViewsFrom(__DIR__ . '/views', 'fb');
     }
 
     /**
@@ -23,6 +23,6 @@ class LaradeckFormBuilderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       include_once __DIR__ . '/helpers.php';
+        include_once __DIR__ . '/helpers.php';
     }
 }

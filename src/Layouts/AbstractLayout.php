@@ -20,17 +20,18 @@ abstract class AbstractLayout
      */
     protected $formClasses = '';
 
+    protected $elementClasses = '';
+
+    protected $orientationDir;
+
     abstract protected function setFormClasses();
 
     /**
      * AbstractLayout constructor.
-     * @param string $cssFramework
-     * @param string $orientation
      */
-    public function __construct(string $cssFramework = 'html', ?string $orientation = null)
+    public function __construct()
     {
-        $this->cssFramework = $cssFramework;
-        $this->orientation($orientation);
+
     }
 
     public function orientation(?string $orientation = null): self
@@ -42,9 +43,19 @@ abstract class AbstractLayout
         return $this;
     }
 
+    public function getViewsDirPath(): string
+    {
+        return $this->cssFramework . '.' . $this->orientationDir;
+    }
+
     public function getFormClasses(): string
     {
         return $this->formClasses;
+    }
+
+    public function getElementClasses(): string
+    {
+        return $this->elementClasses;
     }
 
 }

@@ -29,11 +29,4 @@ abstract class BaseCheckedElement extends AbstractElement
 
         parent::beforeToParts();
     }
-
-    public function __toString(): string
-    {
-        $this->addAttrAs('checked');
-
-        return parent::__toString();
-    }
 }

@@ -21,10 +21,8 @@ abstract class BaseAreaElement extends AbstractElement
 
     }
 
-    protected function render(): string
+    protected function getTagHtml()
     {
-        $attributes = $this->generateAttributes();
-
-        return '<' . $this->tag . $attributes . '>' . $this->value . '</' . $this->tag . '>';
+        return '<' . $this->tag . '**attributes**>' . $this->value . '</' . $this->tag . '>';
     }
 }

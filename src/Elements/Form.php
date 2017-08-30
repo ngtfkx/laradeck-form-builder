@@ -37,10 +37,7 @@ class Form extends AbstractElement
      */
     protected $enctype;
 
-    /**
-     * @var AbstractLayout
-     */
-    protected $layout;
+    protected $onlyTagRender = true;
 
     /**
      * Form constructor.
@@ -160,6 +157,11 @@ class Form extends AbstractElement
     public function tag(): void
     {
         $this->tag = 'form';
+    }
+
+    protected function beforeToParts(): void
+    {
+
     }
 
     public function __toString(): string

@@ -4,6 +4,7 @@ namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
 use Illuminate\Support\Collection;
+use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
 
 abstract class AbstractElement
 {
@@ -48,6 +49,13 @@ abstract class AbstractElement
     protected $help;
 
     /**
+     * @var AbstractLayout
+     */
+    protected $layout;
+
+    protected $onlyTagRender = false;
+
+    /**
      * @return void
      */
     abstract public function tag();
@@ -63,6 +71,13 @@ abstract class AbstractElement
         $this->parts = new Collection();
 
         $this->tag();
+    }
+
+    public function layout(?AbstractLayout $layout): self
+    {
+        $this->layout = $layout;
+
+        return $this;
     }
 
     /**
@@ -275,12 +290,40 @@ abstract class AbstractElement
     {
         $attributes = $this->generateAttributes();
 
-        return '<' . $this->tag . $attributes . '>';
+        $tag = $this->getTagHtml();
+
+        $tag = str_replace('**attributes**', $attributes, $tag);
+
+        if (is_null($this->layout) === false) {
+            $view = 'fb::' . $this->layout->getViewsDirPath() . '.base';
+
+            if(view()->exists($view) && $this->onlyTagRender === false) {
+                $data = [
+                    'id' => 'idddd',
+                    'help' => 'ggggggggggg',
+                    'label' => '45345345',
+                    'tag' => $tag,
+                ];
+
+                return view($view, $data);
+            }
+        }
+
+        return $tag;
+    }
+
+    protected function getTagHtml()
+    {
+        return '<' . $this->tag . '**attributes**>';
     }
 
     protected function beforeToParts(): void
     {
         $this->addAttr('value');
+
+        if (is_null($this->layout) === false && $this->layout->getElementClasses()) {
+            $this->class($this->layout->getElementClasses());
+        }
     }
 
     protected  function afterToParts(): void

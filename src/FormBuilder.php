@@ -81,7 +81,7 @@ class FormBuilder
      */
     public function hidden(string $name = null, string $value = null): Elements\Hidden
     {
-        return new Elements\Hidden($name, $value);
+        return (new Elements\Hidden($name, $value))->layout($this->layout);
     }
 
     /**
@@ -93,7 +93,7 @@ class FormBuilder
      */
     public function text(string $name = null, string $value = null): Elements\Text\Text
     {
-        return new Elements\Text\Text($name, $value);
+        return (new Elements\Text\Text($name, $value))->layout($this->layout);
     }
 
     /**
@@ -105,7 +105,7 @@ class FormBuilder
      */
     public function email(string $name = null, string $value = null): Elements\Text\Email
     {
-        return new Elements\Text\Email($name, $value);
+        return (new Elements\Text\Email($name, $value))->layout($this->layout);
     }
 
     /**
@@ -117,7 +117,7 @@ class FormBuilder
      */
     public function password(string $name = null, string $value = null): Elements\Text\Password
     {
-        return new Elements\Text\Password($name, $value);
+        return (new Elements\Text\Password($name, $value))->layout($this->layout);
     }
 
     /**
@@ -129,7 +129,7 @@ class FormBuilder
      */
     public function number(string $name = null, string $value = null): Elements\Text\Number
     {
-        return new Elements\Text\Number($name, $value);
+        return (new Elements\Text\Number($name, $value))->layout($this->layout);
     }
 
     /**
@@ -141,7 +141,7 @@ class FormBuilder
      */
     public function tel(string $name = null, string $value = null): Elements\Text\Tel
     {
-        return new Elements\Text\Tel($name, $value);
+        return (new Elements\Text\Tel($name, $value))->layout($this->layout);
     }
 
     /**
@@ -153,7 +153,7 @@ class FormBuilder
      */
     public function color(string $name = null, string $value = null): Elements\Text\Color
     {
-        return new Elements\Text\Color($name, $value);
+        return (new Elements\Text\Color($name, $value))->layout($this->layout);
     }
 
     /**
@@ -165,7 +165,7 @@ class FormBuilder
      */
     public function datetime(string $name = null, string $value = null): Elements\Text\Datetime
     {
-        return new Elements\Text\Datetime($name, $value);
+        return (new Elements\Text\Datetime($name, $value))->layout($this->layout);
     }
 
     /**
@@ -177,7 +177,7 @@ class FormBuilder
      */
     public function date(string $name = null, string $value = null): Elements\Text\Date
     {
-        return new Elements\Text\Date($name, $value);
+        return (new Elements\Text\Date($name, $value))->layout($this->layout);
     }
 
     /**
@@ -189,7 +189,7 @@ class FormBuilder
      */
     public function range(string $name = null, string $value = null): Elements\Text\Range
     {
-        return new Elements\Text\Range($name, $value);
+        return (new Elements\Text\Range($name, $value))->layout($this->layout);
     }
 
     /**
@@ -201,7 +201,7 @@ class FormBuilder
      */
     public function search(string $name = null, string $value = null): Elements\Text\Search
     {
-        return new Elements\Text\Search($name, $value);
+        return (new Elements\Text\Search($name, $value))->layout($this->layout);
     }
 
     /**
@@ -213,7 +213,7 @@ class FormBuilder
      */
     public function time(string $name = null, string $value = null): Elements\Text\Time
     {
-        return new Elements\Text\Time($name, $value);
+        return (new Elements\Text\Time($name, $value))->layout($this->layout);
     }
 
     /**
@@ -225,7 +225,7 @@ class FormBuilder
      */
     public function url(string $name = null, string $value = null): Elements\Text\Url
     {
-        return new Elements\Text\Url($name, $value);
+        return (new Elements\Text\Url($name, $value))->layout($this->layout);
     }
 
     /**
@@ -237,7 +237,7 @@ class FormBuilder
      */
     public function month(string $name = null, string $value = null): Elements\Text\Month
     {
-        return new Elements\Text\Month($name, $value);
+        return (new Elements\Text\Month($name, $value))->layout($this->layout);
     }
 
     /**
@@ -249,7 +249,7 @@ class FormBuilder
      */
     public function week(string $name = null, string $value = null): Elements\Text\Week
     {
-        return new Elements\Text\Week($name, $value);
+        return (new Elements\Text\Week($name, $value))->layout($this->layout);
     }
 
     /**
@@ -261,7 +261,7 @@ class FormBuilder
      */
     public function submit(string $name = null, string $value = null): Elements\Submit\Submit
     {
-        return new Elements\Submit\Submit($name, $value);
+        return (new Elements\Submit\Submit($name, $value))->layout($this->layout);
     }
 
     /**
@@ -273,7 +273,7 @@ class FormBuilder
      */
     public function reset(string $name = null, string $value = null): Elements\Submit\Reset
     {
-        return new Elements\Submit\Reset($name, $value);
+        return (new Elements\Submit\Reset($name, $value))->layout($this->layout);
     }
 
     /**
@@ -285,7 +285,7 @@ class FormBuilder
      */
     public function button(string $name = null, string $value = null): Elements\Area\Button
     {
-        return new Elements\Area\Button($name, $value);
+        return (new Elements\Area\Button($name, $value))->layout($this->layout);
     }
 
     /**
@@ -297,7 +297,7 @@ class FormBuilder
      */
     public function textarea(string $name = null, string $value = null): Elements\Area\Textarea
     {
-        return new Elements\Area\Textarea($name, $value);
+        return (new Elements\Area\Textarea($name, $value))->layout($this->layout);
     }
 
     /**
@@ -308,7 +308,7 @@ class FormBuilder
      */
     public function file(string $name = null): Elements\File\File
     {
-        return new Elements\File\File($name);
+        return (new Elements\File\File($name))->layout($this->layout);
     }
 
     /**
@@ -319,7 +319,7 @@ class FormBuilder
      */
     public function image(string $name = null): Elements\File\Image
     {
-        return new Elements\File\Image($name);
+        return (new Elements\File\Image($name))->layout($this->layout);
     }
 
     /**
@@ -332,7 +332,7 @@ class FormBuilder
      */
     public function checkbox(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checked\Checkbox
     {
-        return new Elements\Checked\Checkbox($name, $value, $state);
+        return (new Elements\Checked\Checkbox($name, $value, $state))->layout($this->layout);
     }
 
     /**
@@ -345,7 +345,7 @@ class FormBuilder
      */
     public function radio(string $name = null, ?string $value = '1', ?bool $state = false): Elements\Checked\Radio
     {
-        return new Elements\Checked\Radio($name, $value, $state);
+        return (new Elements\Checked\Radio($name, $value, $state))->layout($this->layout);
     }
 
     /**
@@ -358,7 +358,7 @@ class FormBuilder
      */
     public function select(string $name = null, string $value = null, ?iterable $options = null): Elements\Select
     {
-        return new Elements\Select($name, $value, $options);
+        return (new Elements\Select($name, $value, $options))->layout($this->layout);
     }
 
     /**
