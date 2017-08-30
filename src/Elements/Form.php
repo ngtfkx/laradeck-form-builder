@@ -3,6 +3,8 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
+use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
+
 class Form extends AbstractElement
 {
     /**
@@ -34,6 +36,22 @@ class Form extends AbstractElement
      * @var string Тип кодировки данных при отправке
      */
     protected $enctype;
+
+    /**
+     * @var AbstractLayout
+     */
+    protected $layout;
+
+    /**
+     * Form constructor.
+     * @param AbstractLayout $layout
+     */
+    public function __construct(?AbstractLayout $layout = null)
+    {
+        parent::__construct();
+
+        $this->layout = $layout;
+    }
 
     /**
      * @param string|null $value
@@ -146,6 +164,10 @@ class Form extends AbstractElement
 
     public function __toString(): string
     {
+        if ($this->layout) {
+            $this->class($this->layout->getFormClasses());
+        }
+
         $this->attrs([
                 'action' => $this->action,
                 'method' => $this->method,

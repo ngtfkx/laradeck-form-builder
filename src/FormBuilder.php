@@ -4,6 +4,7 @@ namespace Ngtfkx\Laradeck\FormBuilder;
 
 
 use Ngtfkx\Laradeck\FormBuilder\Elements;
+use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
 
 class FormBuilder
 {
@@ -17,17 +18,7 @@ class FormBuilder
      */
     protected $form;
 
-    /**
-     * Тип верстки. Допустимые значения: html, bootstrap3, bootstrap4
-     * @var string
-     */
-    protected $cssFramework = 'html';
-
-    /**
-     * Тип верстки формы
-     * @var string
-     */
-    protected $formLayout;
+    protected $layout;
 
     /**
      * FormBuilder constructor.
@@ -41,16 +32,18 @@ class FormBuilder
      * Сеттер для шаблона верстки (тип фремворка и тип расположения формы)
      *
      * @param string $cssFramework
-     * @param null|string $formLayout
+     * @param null|string $orientation
      * @return FormBuilder
      */
-    public function layout(string $cssFramework, ?string $formLayout = null): FormBuilder
+    public function layout(string $cssFramework, ?string $orientation = null): FormBuilder
     {
-        $this->cssFramework = $cssFramework;
+        $className = "\\Ngtfkx\\Laradeck\\FormBuilder\\Layouts\\" . studly_case($cssFramework);
 
-        $this->formLayout = $formLayout;
+        if(class_exists($className)) {
+            $this->layout = (new $className)->orientation($orientation);
+        }
 
-        // TODO: надо вешать стили на тег формы в зависимости от переданных данных
+        return $this;
     }
 
     /**
@@ -62,7 +55,7 @@ class FormBuilder
      */
     public function open(?string $action = '', ?string $method = 'get'): Elements\Form
     {
-        $this->form = (new Elements\Form())->action($action)->method($method);
+        $this->form = (new Elements\Form($this->layout))->action($action)->method($method);
 
         return $this->form;
     }
