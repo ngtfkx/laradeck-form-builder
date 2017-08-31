@@ -9,6 +9,10 @@ class Bootstrap3 extends AbstractLayout
 
     protected $elementClasses = 'form-control';
 
+    public $skipElementClasses = [
+        'button', 'checkbox', 'radio'
+    ];
+
     protected function setFormClasses()
     {
         switch ($this->orientation) {

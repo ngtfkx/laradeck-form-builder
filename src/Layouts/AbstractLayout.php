@@ -24,6 +24,8 @@ abstract class AbstractLayout
 
     protected $orientationDir;
 
+    public $skipElementClasses;
+
     abstract protected function setFormClasses();
 
     /**

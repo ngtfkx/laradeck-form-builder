@@ -27,7 +27,7 @@ abstract class AbstractElement
     /**
      * @var string $value Значение элемента
      */
-    protected $value;
+    public $value;
 
     /**
      * @var string $tag Тег элемента
@@ -296,7 +296,7 @@ abstract class AbstractElement
     {
         $this->addAttr('value');
 
-        if (is_null($this->layout) === false && $this->layout->getElementClasses()) {
+        if (is_null($this->layout) === false && $this->layout->getElementClasses() && !in_array($this->getClassName(), $this->layout->skipElementClasses)) {
             $this->class($this->layout->getElementClasses());
         }
     }
@@ -306,6 +306,11 @@ abstract class AbstractElement
         if($this->parts->has('id') === false) {
             $this->parts->put('id', str_random(20));
         }
+    }
+
+    public function getClassName($strToLower = false): string
+    {
+        return $strToLower ? class_basename($this) : strtolower(class_basename($this));
     }
 
     /**

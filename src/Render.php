@@ -43,7 +43,7 @@ class Render
 
     protected function render(): string
     {
-        $attributes = $this->generateAttributes();
+        $attributes = $this->generateParts();
 
         $tag = $this->element->getTagHtml();
 
@@ -61,6 +61,10 @@ class Render
                         'help' => $this->element->help,
                         'label' => $this->element->label,
                         'tag' => $tag,
+                        'value' => $this->element->value,
+                        'class' => $this->generateClasses(),
+                        'style' => $this->generateStyles(),
+                        'attributes' => $this->generateAttributes(),
                     ];
 
                     return view($view, $data);
@@ -71,7 +75,36 @@ class Render
         return $tag;
     }
 
+    protected function generateClasses(): string
+    {
+        $string = $this->element->classes->implode(' ');
+
+        return $string;
+    }
+
+    protected function generateStyles(): string
+    {
+        $string = '';
+
+        return $string;
+    }
+
     protected function generateAttributes(): string
+    {
+        $string = '';
+
+        foreach ($this->element->attributes as $key => $value) {
+            if (is_null($value) || (is_bool($value) && $value === false)) {
+                continue;
+            }
+
+            $string .= ' ' . $key . '="' . (is_bool($value) ? $key : $value) . '"';
+        }
+
+        return $string;
+    }
+
+    protected function generateParts(): string
     {
         $attributes = '';
 
