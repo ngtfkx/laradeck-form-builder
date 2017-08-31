@@ -38,7 +38,7 @@ class Select extends AbstractElement
         $this->tag = 'select';
     }
 
-    protected function getTagHtml()
+    public function getTagHtml()
     {
         return '<' . $this->tag . '**attributes**>' . $this->value . '</' . $this->tag . '>';
     }

@@ -16,12 +16,12 @@ abstract class BaseAreaElement extends AbstractElement
         $this->value($value);
     }
 
-    protected function beforeToParts(): void
+    public function beforeToParts(): void
     {
 
     }
 
-    protected function getTagHtml()
+    public function getTagHtml()
     {
         return '<' . $this->tag . '**attributes**>' . $this->value . '</' . $this->tag . '>';
     }

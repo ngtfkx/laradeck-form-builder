@@ -5,23 +5,24 @@ namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 use Illuminate\Support\Collection;
 use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
+use Ngtfkx\Laradeck\FormBuilder\Render;
 
 abstract class AbstractElement
 {
     /**
      * @var Collection|iterable $classes Коллекция классом элемента
      */
-    protected $classes;
+    public $classes;
 
     /**
      * @var Collection|iterable $attributes Коллекция дополнительных атрибутов элемента
      */
-    protected $attributes;
+    public $attributes;
 
     /**
      * @var Collection|iterable $styles Коллекция inline-стилей элемента
      */
-    protected $styles;
+    public $styles;
 
     /**
      * @var string $value Значение элемента
@@ -36,24 +37,24 @@ abstract class AbstractElement
     /**
      * @var Collection|iterable $parts Набор атрибутов для генерации html-кода элементов
      */
-    protected $parts;
+    public $parts;
 
     /**
      * @var string $label
      */
-    protected $label;
+    public $label;
 
     /**
      * @var string $help
      */
-    protected $help;
+    public $help;
 
     /**
      * @var AbstractLayout
      */
-    protected $layout;
+    public $layout;
 
-    protected $onlyTagRender = false;
+    public $onlyTagRender = false;
 
     /**
      * @return void
@@ -286,42 +287,12 @@ abstract class AbstractElement
         return $this;
     }
 
-    protected function render(): string
-    {
-        $attributes = $this->generateAttributes();
-
-        $tag = $this->getTagHtml();
-
-        $tag = str_replace('**attributes**', $attributes, $tag);
-
-        if (is_null($this->layout) === false) {
-            $views = [
-                'fb::' . $this->layout->getViewsDirPath() . '.' . strtolower(class_basename($this)),
-                'fb::' . $this->layout->getViewsDirPath() . '.base',
-            ];
-            foreach ($views as $view){
-                if (view()->exists($view) && $this->onlyTagRender === false) {
-                    $data = [
-                        'id' => $this->parts->get('id'),
-                        'help' => $this->help,
-                        'label' => $this->label,
-                        'tag' => $tag,
-                    ];
-
-                    return view($view, $data);
-                }
-            }
-        }
-
-        return $tag;
-    }
-
-    protected function getTagHtml()
+    public function getTagHtml()
     {
         return '<' . $this->tag . '**attributes**>';
     }
 
-    protected function beforeToParts(): void
+    public function beforeToParts(): void
     {
         $this->addAttr('value');
 
@@ -330,7 +301,7 @@ abstract class AbstractElement
         }
     }
 
-    protected function afterToParts(): void
+    public function afterToParts(): void
     {
         if($this->parts->has('id') === false) {
             $this->parts->put('id', str_random(20));
@@ -344,60 +315,7 @@ abstract class AbstractElement
      */
     public function __toString(): string
     {
-        $this->beforeToParts();
-
-        $this->classesToParts();
-
-        $this->stylesToParts();
-
-        $this->attributesToParts();
-
-        $this->afterToParts();
-
-        return $this->render();
-    }
-
-    protected function generateAttributes(): string
-    {
-        $attributes = '';
-
-        foreach ($this->parts as $key => $value) {
-            if (is_null($value) || (is_bool($value) && $value === false)) {
-                continue;
-            }
-
-            $attributes .= ' ' . $key . '="' . (is_bool($value) ? $key : $value) . '"';
-        }
-
-        return $attributes;
-    }
-
-    protected function stylesToParts(): void
-    {
-        if ($this->styles->isNotEmpty()) {
-            $this->parts->put('style', $this->styles->pipe(function ($styles) {
-                $styleAttr = '';
-                foreach ($styles as $key => $value) {
-                    $styleAttr .= $key . ':' . $value . ';';
-                }
-
-                return $styleAttr;
-            }));
-        }
-    }
-
-    protected function classesToParts(): void
-    {
-        if ($this->classes->isNotEmpty()) {
-            $this->parts->put('class', $this->classes->implode(' '));
-        }
-    }
-
-    public function attributesToParts(): void
-    {
-        foreach ($this->attributes as $key => $value) {
-            $this->parts->put($key, $value);
-        }
+        return new Render($this);
     }
 
     protected function addAttr(...$names): self

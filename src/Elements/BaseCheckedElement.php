@@ -23,7 +23,7 @@ abstract class BaseCheckedElement extends AbstractElement
         $this->checked = $state ?: false;
     }
 
-    protected function beforeToParts(): void
+    public function beforeToParts(): void
     {
         $this->addAttrAs('checked');
 

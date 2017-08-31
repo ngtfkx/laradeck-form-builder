@@ -37,7 +37,7 @@ class Form extends AbstractElement
      */
     protected $enctype;
 
-    protected $onlyTagRender = true;
+    public $onlyTagRender = true;
 
     /**
      * Form constructor.
@@ -159,7 +159,7 @@ class Form extends AbstractElement
         $this->tag = 'form';
     }
 
-    protected function beforeToParts(): void
+    public function beforeToParts(): void
     {
 
     }
