@@ -302,9 +302,9 @@ abstract class AbstractElement
             foreach ($views as $view){
                 if (view()->exists($view) && $this->onlyTagRender === false) {
                     $data = [
-                        'id' => 'idddd',
-                        'help' => 'ggggggggggg',
-                        'label' => '45345345',
+                        'id' => $this->parts->get('id'),
+                        'help' => $this->help,
+                        'label' => $this->label,
                         'tag' => $tag,
                     ];
 
@@ -332,7 +332,9 @@ abstract class AbstractElement
 
     protected function afterToParts(): void
     {
-
+        if($this->parts->has('id') === false) {
+            $this->parts->put('id', str_random(20));
+        }
     }
 
     /**

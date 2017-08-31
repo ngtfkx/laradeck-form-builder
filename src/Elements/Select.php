@@ -5,8 +5,6 @@ namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 class Select extends AbstractElement
 {
-    protected $needClose = true;
-
     protected $selected;
 
     public function __construct(?string $name = null, ?string $value = null, ?iterable $options = null)
@@ -38,6 +36,11 @@ class Select extends AbstractElement
     public function tag(): void
     {
         $this->tag = 'select';
+    }
+
+    protected function getTagHtml()
+    {
+        return '<' . $this->tag . '**attributes**>' . $this->value . '</' . $this->tag . '>';
     }
 
 }
