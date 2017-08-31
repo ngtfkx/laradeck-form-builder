@@ -51,7 +51,7 @@ class Render
 
         if (is_null($this->element->layout) === false) {
             $views = [
-                'fb::' . $this->element->layout->getViewsDirPath() . '.' . strtolower(class_basename($this)),
+                'fb::' . $this->element->layout->getViewsDirPath() . '.' . strtolower(class_basename($this->element)),
                 'fb::' . $this->element->layout->getViewsDirPath() . '.base',
             ];
             foreach ($views as $view){
