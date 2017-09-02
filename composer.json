@@ -46,6 +46,14 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Ngtfkx\\Laradeck\\FormBuilder\\LaradeckFormBuilderServiceProvider"
+            ],
+            "aliases": {
+                "FormBuilder": "Ngtfkx\\Laradeck\\FormBuilder\\FormBuilderFacade"
+            }
         }
     },
     "config": {
