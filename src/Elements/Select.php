@@ -28,6 +28,11 @@ class Select extends AbstractElement
         }
     }
 
+    public function afterToParts(): void
+    {
+        $this->parts->put('value', null);
+    }
+
     public function selected($value = null)
     {
         $this->selected = $value;
