@@ -65,6 +65,7 @@ class Render
                         'class' => $this->generateClasses(),
                         'style' => $this->generateStyles(),
                         'attributes' => $this->generateAttributes(),
+                        'fieldName' => $this->element->attributes->get('name'),
                     ];
 
                     return view($view, $data);
