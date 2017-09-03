@@ -10,7 +10,7 @@ class Bootstrap3 extends AbstractLayout
     protected $elementClasses = 'form-control';
 
     public $skipElementClasses = [
-        'button', 'checkbox', 'radio'
+        'button', 'checkbox', 'radio', 'submit', 'reset'
     ];
 
     protected function setFormClasses()
