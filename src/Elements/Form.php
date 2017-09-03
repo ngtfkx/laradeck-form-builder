@@ -159,11 +159,6 @@ class Form extends AbstractElement
         $this->tag = 'form';
     }
 
-    public function beforeToParts(): void
-    {
-
-    }
-
     public function __toString(): string
     {
         if ($this->layout) {

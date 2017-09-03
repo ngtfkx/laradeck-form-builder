@@ -7,6 +7,8 @@ class Select extends AbstractElement
 {
     protected $selected;
 
+    protected $valueAsAttribute = false;
+
     public function __construct(?string $name = null, ?string $value = null, ?iterable $options = null)
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class Select extends AbstractElement
         }
     }
 
-    public function afterToParts(): void
+    public function afterElementPrepareToRender(): void
     {
         $this->parts->put('value', null);
     }

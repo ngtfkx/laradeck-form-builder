@@ -28,15 +28,21 @@ class Render
      */
     public function __toString(): string
     {
-        $this->element->beforeToParts();
+        $this->element->beforeCommonPrepareToRender();
 
-        $this->classesToParts();
+        $this->element->beforeElementPrepareToRender();
 
-        $this->stylesToParts();
+        $this->element->parts->put('class', $this->generateClasses());
 
-        $this->attributesToParts();
+        $this->element->parts->put('style', $this->generateStyles());
 
-        $this->element->afterToParts();
+        foreach ($this->element->attributes as $key => $value) {
+            $this->element->parts->put($key, $value);
+        }
+
+        $this->element->afterCommonPrepareToRender();
+
+        $this->element->afterElementPrepareToRender();
 
         return $this->render();
     }
@@ -51,10 +57,10 @@ class Render
 
         if (is_null($this->element->layout) === false) {
             $views = [
-                'fb::' . $this->element->layout->getViewsDirPath() . '.' . strtolower(class_basename($this->element)),
+                'fb::' . $this->element->layout->getViewsDirPath() . '.' . $this->element->getClassName(),
                 'fb::' . $this->element->layout->getViewsDirPath() . '.base',
             ];
-            foreach ($views as $view){
+            foreach ($views as $view) {
                 if (view()->exists($view) && $this->element->onlyTagRender === false) {
                     $data = [
                         'id' => $this->element->parts->get('id'),
@@ -85,7 +91,14 @@ class Render
 
     protected function generateStyles(): string
     {
-        $string = '';
+        $string = $this->element->styles->pipe(function ($styles) {
+            $attribute = '';
+            foreach ($styles as $key => $value) {
+                $attribute .= $key . ':' . $value . ';';
+            }
+
+            return $attribute;
+        });
 
         return $string;
     }
@@ -110,7 +123,7 @@ class Render
         $attributes = '';
 
         foreach ($this->element->parts as $key => $value) {
-            if (is_null($value) || (is_bool($value) && $value === false)) {
+            if (empty($value) || (is_bool($value) && $value === false)) {
                 continue;
             }
 
@@ -118,33 +131,5 @@ class Render
         }
 
         return $attributes;
-    }
-
-    protected function stylesToParts(): void
-    {
-        if ($this->element->styles->isNotEmpty()) {
-            $this->element->parts->put('style', $this->element->styles->pipe(function ($styles) {
-                $styleAttr = '';
-                foreach ($styles as $key => $value) {
-                    $styleAttr .= $key . ':' . $value . ';';
-                }
-
-                return $styleAttr;
-            }));
-        }
-    }
-
-    protected function classesToParts(): void
-    {
-        if ($this->element->classes->isNotEmpty()) {
-            $this->element->parts->put('class', $this->element->classes->implode(' '));
-        }
-    }
-
-    public function attributesToParts(): void
-    {
-        foreach ($this->element->attributes as $key => $value) {
-            $this->element->parts->put($key, $value);
-        }
     }
 }

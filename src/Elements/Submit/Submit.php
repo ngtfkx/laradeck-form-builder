@@ -11,5 +11,4 @@ class Submit extends BaseSubmitElement
     {
         $this->tag = 'input type="submit"';
     }
-
 }

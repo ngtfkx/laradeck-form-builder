@@ -39,6 +39,13 @@ class DefaultTest extends TestCase
         $this->assertNotContains('form-control', $element);
     }
 
+    public function testText()
+    {
+        $element = '' . fb()->text();
+
+        $this->assertContains('form-control', $element);
+    }
+
     public function testReset()
     {
         $element = '' . fb()->reset();

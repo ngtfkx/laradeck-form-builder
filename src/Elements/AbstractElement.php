@@ -57,6 +57,13 @@ abstract class AbstractElement
     public $onlyTagRender = false;
 
     /**
+     * Генерировать значение атрибутом
+     *
+     * @var bool
+     */
+    protected $valueAsAttribute = true;
+
+    /**
      * @return void
      */
     abstract public function tag();
@@ -292,30 +299,51 @@ abstract class AbstractElement
         return '<' . $this->tag . '**attributes**>';
     }
 
-    public function beforeToParts(): void
+    public function beforeCommonPrepareToRender(): void
     {
-        $this->addAttr('value');
+        if ($this->valueAsAttribute) {
+            $this->parts['value'] = $this->value;
+        }
 
-        if (is_null($this->layout) === false && $this->layout->getCommonClasses() && !in_array($this->getClassName(), $this->layout->skipElementClasses)) {
+        $elementName = $this->getLowerClassName();
+
+        if (is_null($this->layout) === false && $elementName && !in_array($elementName, $this->layout->skipCommonClassesForElements)) {
             $this->class($this->layout->getCommonClasses());
         }
 
-        if(is_null($this->layout) === false && $this->layout->getElementClasses($this->getClassName())) {
-            dump($this->layout->getElementClasses($this->getClassName()));
-            $this->class($this->layout->getElementClasses($this->getClassName()));
+        if (is_null($this->layout) === false && $this->layout->getElementClasses($elementName)) {
+            $this->class($this->layout->getElementClasses($elementName));
         }
     }
 
-    public function afterToParts(): void
+    public function beforeElementPrepareToRender(): void
     {
-        if($this->parts->has('id') === false) {
+
+    }
+
+    public function afterCommonPrepareToRender(): void
+    {
+        /**
+         * Если не задан id, то сгенерируем случайный
+         */
+        if ($this->parts->has('id') === false) {
             $this->parts->put('id', str_random(20));
         }
     }
 
-    public function getClassName(bool $strToLower = true): string
+    public function afterElementPrepareToRender(): void
     {
-        return $strToLower ? class_basename($this) : strtolower(class_basename($this));
+
+    }
+
+    public function getLowerClassName(): string
+    {
+        return strtolower($this->getClassName());
+    }
+
+    public function getClassName(): string
+    {
+        return class_basename($this);
     }
 
     /**
@@ -326,17 +354,6 @@ abstract class AbstractElement
     public function __toString(): string
     {
         return new Render($this);
-    }
-
-    protected function addAttr(...$names): self
-    {
-        foreach ($names as $name) {
-            if (!empty($this->$name)) {
-                $this->parts[$name] = $this->$name;
-            }
-        }
-
-        return $this;
     }
 
     protected function addAttrAs(...$names): self

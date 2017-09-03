@@ -14,7 +14,7 @@ class HorizontalTest extends TestCase
     {
         parent::setUp();
 
-        $this->form = fb()->layout('bootstrap3', 'horizontal')->open();
+        $this->form = fb()->layout('bootstrap3', 'horizontal')->open('/');
     }
 
     protected function tearDown()
@@ -34,7 +34,7 @@ class HorizontalTest extends TestCase
         $form = '' . $this->form;
 
         $this->assertContains('<form ', $form);
-        $this->assertContains(' action=""', $form);
+        $this->assertContains(' action="/"', $form);
         $this->assertContains(' method="get"', $form);
         $this->assertContains(' class="form-horizontal"', $form);
     }

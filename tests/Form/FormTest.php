@@ -15,9 +15,9 @@ class FormTest extends TestCase
      */
     public function testFormOpen()
     {
-        $form = '' . fb()->open();
+        $form = '' . fb()->open('/');
 
-        $this->assertContains('<form action="" method="get"', $form);
+        $this->assertContains('<form action="/" method="get"', $form);
     }
 
     public function testFormClose()

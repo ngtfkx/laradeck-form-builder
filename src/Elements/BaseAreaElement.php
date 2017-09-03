@@ -16,7 +16,7 @@ abstract class BaseAreaElement extends AbstractElement
         $this->value($value);
     }
 
-    public function afterToParts(): void
+    public function afterElementPrepareToRender(): void
     {
         $this->parts->put('value', null);
     }

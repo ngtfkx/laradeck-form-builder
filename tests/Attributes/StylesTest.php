@@ -1,6 +1,6 @@
 <?php
 
-namespace Ngtfkx\Laradeck\FormBuilder\Tests;
+namespace Ngtfkx\Laradeck\FormBuilder\Tests\Attributes;
 
 use Ngtfkx\Laradeck\FormBuilder\Elements\Form;
 use Tests\TestCase;

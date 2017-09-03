@@ -11,5 +11,4 @@ class Reset extends BaseSubmitElement
     {
         $this->tag = 'input type="reset"';
     }
-
 }
