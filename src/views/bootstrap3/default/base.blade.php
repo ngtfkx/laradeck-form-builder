@@ -1,7 +1,7 @@
-<div class="form-group{{ $errors->has($fieldName) ? ' has-error' : '' }}">
+<div class="form-group{{ !empty($fieldName) && $errors->has($fieldName) ? ' has-error' : '' }}">
     <label for="{{ $id }}">{{ $label }}</label>
     {!! $tag  !!}
-    @if ($errors->has($fieldName))
+    @if (!empty($fieldName) && $errors->has($fieldName))
         <span class="help-block">
             <strong>{{ $errors->first($fieldName) }}</strong>
         </span>
