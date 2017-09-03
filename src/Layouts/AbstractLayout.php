@@ -3,6 +3,8 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Layouts;
 
 
+use Illuminate\Support\Collection;
+
 abstract class AbstractLayout
 {
     /**
@@ -20,7 +22,9 @@ abstract class AbstractLayout
      */
     protected $formClasses = '';
 
-    protected $elementClasses = '';
+    protected $commonClasses = '';
+
+    protected $elementClasses;
 
     protected $orientationDir;
 
@@ -33,7 +37,7 @@ abstract class AbstractLayout
      */
     public function __construct()
     {
-
+        $this->elementClasses = new Collection($this->elementClasses);
     }
 
     public function orientation(?string $orientation = null): self
@@ -43,6 +47,11 @@ abstract class AbstractLayout
         $this->setFormClasses();
 
         return $this;
+    }
+
+    public function getElementClasses(string $name): ?string
+    {
+        return $this->elementClasses->get($name);
     }
 
     public function getViewsDirPath(): string
@@ -55,9 +64,9 @@ abstract class AbstractLayout
         return $this->formClasses;
     }
 
-    public function getElementClasses(): string
+    public function getCommonClasses(): string
     {
-        return $this->elementClasses;
+        return $this->commonClasses;
     }
 
 }

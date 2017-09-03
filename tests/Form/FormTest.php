@@ -17,7 +17,7 @@ class FormTest extends TestCase
     {
         $form = '' . fb()->open();
 
-        $this->assertEquals('<form action="" method="get">', $form);
+        $this->assertContains('<form action="" method="get"', $form);
     }
 
     public function testFormClose()

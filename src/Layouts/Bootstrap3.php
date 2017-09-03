@@ -7,10 +7,14 @@ class Bootstrap3 extends AbstractLayout
 {
     protected $cssFramework = 'bootstrap3';
 
-    protected $elementClasses = 'form-control';
+    protected $commonClasses = 'form-control';
 
     public $skipElementClasses = [
         'button', 'checkbox', 'radio', 'submit', 'reset'
+    ];
+
+    protected $elementClasses = [
+        'button' => 'btn btn-primary'
     ];
 
     protected function setFormClasses()

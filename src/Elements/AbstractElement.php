@@ -296,8 +296,13 @@ abstract class AbstractElement
     {
         $this->addAttr('value');
 
-        if (is_null($this->layout) === false && $this->layout->getElementClasses() && !in_array($this->getClassName(), $this->layout->skipElementClasses)) {
-            $this->class($this->layout->getElementClasses());
+        if (is_null($this->layout) === false && $this->layout->getCommonClasses() && !in_array($this->getClassName(), $this->layout->skipElementClasses)) {
+            $this->class($this->layout->getCommonClasses());
+        }
+
+        if(is_null($this->layout) === false && $this->layout->getElementClasses($this->getClassName())) {
+            dump($this->layout->getElementClasses($this->getClassName()));
+            $this->class($this->layout->getElementClasses($this->getClassName()));
         }
     }
 
@@ -308,7 +313,7 @@ abstract class AbstractElement
         }
     }
 
-    public function getClassName($strToLower = false): string
+    public function getClassName(bool $strToLower = true): string
     {
         return $strToLower ? class_basename($this) : strtolower(class_basename($this));
     }
