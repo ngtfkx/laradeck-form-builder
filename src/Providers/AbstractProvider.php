@@ -1,11 +1,11 @@
 <?php
 
-namespace Ngtfkx\Laradeck\FormBuilder\Layouts;
+namespace Ngtfkx\Laradeck\FormBuilder\Providers;
 
 
 use Illuminate\Support\Collection;
 
-abstract class AbstractLayout
+abstract class AbstractProvider
 {
     /**
      * @var string $cssFramework Тип верстки. Допустимые значения: html, bootstrap3, bootstrap4

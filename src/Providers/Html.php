@@ -1,9 +1,9 @@
 <?php
 
-namespace Ngtfkx\Laradeck\FormBuilder\Layouts;
+namespace Ngtfkx\Laradeck\FormBuilder\Providers;
 
 
-class Html extends AbstractLayout
+class Html extends AbstractProvider
 {
     protected $cssFramework = 'html';
 

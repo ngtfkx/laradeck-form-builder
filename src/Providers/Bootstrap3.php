@@ -1,9 +1,9 @@
 <?php
 
-namespace Ngtfkx\Laradeck\FormBuilder\Layouts;
+namespace Ngtfkx\Laradeck\FormBuilder\Providers;
 
 
-class Bootstrap3 extends AbstractLayout
+class Bootstrap3 extends AbstractProvider
 {
     protected $cssFramework = 'bootstrap3';
 

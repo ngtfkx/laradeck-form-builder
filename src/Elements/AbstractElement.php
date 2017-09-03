@@ -4,7 +4,7 @@ namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
 use Illuminate\Support\Collection;
-use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
+use Ngtfkx\Laradeck\FormBuilder\Providers\AbstractProvider;
 use Ngtfkx\Laradeck\FormBuilder\Render;
 
 abstract class AbstractElement
@@ -50,7 +50,7 @@ abstract class AbstractElement
     public $help;
 
     /**
-     * @var AbstractLayout
+     * @var AbstractProvider
      */
     public $layout;
 
@@ -81,7 +81,7 @@ abstract class AbstractElement
         $this->tag();
     }
 
-    public function layout(?AbstractLayout $layout): self
+    public function layout(?AbstractProvider $layout): self
     {
         $this->layout = $layout;
 

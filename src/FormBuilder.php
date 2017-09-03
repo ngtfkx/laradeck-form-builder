@@ -4,7 +4,8 @@ namespace Ngtfkx\Laradeck\FormBuilder;
 
 
 use Ngtfkx\Laradeck\FormBuilder\Elements;
-use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
+use Ngtfkx\Laradeck\FormBuilder\Exceptions\ProviderNotFound;
+use Ngtfkx\Laradeck\FormBuilder\Providers\AbstractProvider;
 
 class FormBuilder
 {
@@ -12,11 +13,6 @@ class FormBuilder
      * @var bool Признак, что форма должна быть закрыта
      */
     protected $isClosed = false;
-
-    /**
-     * @var Elements\Form $form
-     */
-    protected $form;
 
     protected $layout;
 
@@ -33,14 +29,17 @@ class FormBuilder
      *
      * @param string $cssFramework
      * @param null|string $orientation
+     * @throws ProviderNotFound
      * @return FormBuilder
      */
     public function layout(string $cssFramework, ?string $orientation = null): FormBuilder
     {
-        $className = "\\Ngtfkx\\Laradeck\\FormBuilder\\Layouts\\" . studly_case($cssFramework);
+        $className = "\\Ngtfkx\\Laradeck\\FormBuilder\\Providers\\" . studly_case($cssFramework);
 
         if(class_exists($className)) {
             $this->layout = (new $className)->orientation($orientation);
+        } else {
+            throw new ProviderNotFound();
         }
 
         return $this;
@@ -55,9 +54,7 @@ class FormBuilder
      */
     public function open(?string $action = '', ?string $method = 'get'): Elements\Form
     {
-        $this->form = (new Elements\Form($this->layout))->action($action)->method($method);
-
-        return $this->form;
+        return (new Elements\Form($this->layout))->action($action)->method($method);
     }
 
     /**
@@ -70,6 +67,16 @@ class FormBuilder
         $this->isClosed = true;
 
         return $this;
+    }
+
+    /**
+     * Преобразовать в строку для вывода в HTML
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return ($this->isClosed) ? '</form>' : '<form>';
     }
 
     /**
@@ -359,15 +366,5 @@ class FormBuilder
     public function select(string $name = null, string $value = null, ?iterable $options = null): Elements\Select
     {
         return (new Elements\Select($name, $value, $options))->layout($this->layout);
-    }
-
-    /**
-     * Преобразовать в строку для вывода в HTML
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return ($this->isClosed) ? '</form>' : '<form>';
     }
 }

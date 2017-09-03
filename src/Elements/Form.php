@@ -3,7 +3,7 @@
 namespace Ngtfkx\Laradeck\FormBuilder\Elements;
 
 
-use Ngtfkx\Laradeck\FormBuilder\Layouts\AbstractLayout;
+use Ngtfkx\Laradeck\FormBuilder\Providers\AbstractProvider;
 
 class Form extends AbstractElement
 {
@@ -41,9 +41,9 @@ class Form extends AbstractElement
 
     /**
      * Form constructor.
-     * @param AbstractLayout $layout
+     * @param AbstractProvider $layout
      */
-    public function __construct(?AbstractLayout $layout = null)
+    public function __construct(?AbstractProvider $layout = null)
     {
         parent::__construct();
 
